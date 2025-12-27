@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kitava Nutrition Calculator</title>
+  <meta name="description" content="Build your custom Kitava bowl and track your nutrition. Real food everyone can enjoy - 100% free of gluten, dairy, corn, soy, peanuts, refined sugar & seed oils.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-text">KITAVA</span>
+        <span class="logo-tagline">Nutrition Calculator</span>
+      </div>
+      <p class="header-subtitle">Real Food Everyone Can Enjoy</p>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <div class="builder-section">
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-mode="byo">Build Your Own</button>
+        <button class="mode-btn" data-mode="signature">Signature Bowls</button>
+        <button class="mode-btn" data-mode="sides">Small Plates</button>
+      </div>
+
+      <!-- Build Your Own Section -->
+      <div id="byo-builder" class="builder-content active">
+        <!-- Step 1: Base -->
+        <section class="builder-step">
+          <div class="step-header">
+            <span class="step-number">1</span>
+            <div class="step-info">
+              <h2>Choose a Base</h2>
+              <p class="step-description">Select one base for your bowl</p>
+            </div>
+          </div>
+          <div class="options-grid" id="bases-grid">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+
+        <!-- Step 2: Protein -->
+        <section class="builder-step">
+          <div class="step-header">
+            <span class="step-number">2</span>
+            <div class="step-info">
+              <h2>Choose a Protein</h2>
+              <p class="step-description">Add protein to your bowl</p>
+            </div>
+          </div>
+          <div class="options-grid" id="proteins-grid">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+
+        <!-- Step 3: Veggies -->
+        <section class="builder-step">
+          <div class="step-header">
+            <span class="step-number">3</span>
+            <div class="step-info">
+              <h2>Choose Veggies</h2>
+              <p class="step-description">2 included • Extra veggies +$4 each</p>
+            </div>
+          </div>
+          <div class="options-grid veggies-grid" id="veggies-grid">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+
+        <!-- Step 4: Sauce -->
+        <section class="builder-step">
+          <div class="step-header">
+            <span class="step-number">4</span>
+            <div class="step-info">
+              <h2>Choose a Sauce</h2>
+              <p class="step-description">Select one sauce</p>
+            </div>
+          </div>
+          <div class="options-grid" id="sauces-grid">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+
+        <!-- Step 5: Extras -->
+        <section class="builder-step">
+          <div class="step-header">
+            <span class="step-number">5</span>
+            <div class="step-info">
+              <h2>Extra Toppings</h2>
+              <p class="step-description">Add optional extras</p>
+            </div>
+          </div>
+          <div class="options-grid" id="extras-grid">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+      </div>
+
+      <!-- Signature Bowls Section -->
+      <div id="signature-builder" class="builder-content">
+        <section class="builder-step">
+          <div class="step-header">
+            <div class="step-info">
+              <h2>Signature Bowls & Salads</h2>
+              <p class="step-description">Chef-crafted combinations</p>
+            </div>
+          </div>
+          <div class="signature-grid" id="signature-grid">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+      </div>
+
+      <!-- Small Plates Section -->
+      <div id="sides-builder" class="builder-content">
+        <section class="builder-step">
+          <div class="step-header">
+            <div class="step-info">
+              <h2>Small Plates</h2>
+              <p class="step-description">Craveable sides great for sharing</p>
+            </div>
+          </div>
+          <div class="options-grid" id="small-plates-grid">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Nutrition Summary Panel -->
+    <aside class="nutrition-panel">
+      <div class="panel-header">
+        <h2>Nutrition Facts</h2>
+        <button class="reset-btn" id="reset-btn">Clear All</button>
+      </div>
+
+      <div class="macro-rings">
+        <div class="macro-ring" data-macro="protein">
+          <svg viewBox="0 0 100 100">
+            <circle class="ring-bg" cx="50" cy="50" r="45"/>
+            <circle class="ring-fill protein-ring" cx="50" cy="50" r="45" stroke-dasharray="283" stroke-dashoffset="283"/>
+          </svg>
+          <div class="macro-value">
+            <span class="macro-number" id="protein-value">0</span>
+            <span class="macro-unit">g</span>
+          </div>
+          <span class="macro-label">Protein</span>
+        </div>
+
+        <div class="macro-ring" data-macro="fat">
+          <svg viewBox="0 0 100 100">
+            <circle class="ring-bg" cx="50" cy="50" r="45"/>
+            <circle class="ring-fill fat-ring" cx="50" cy="50" r="45" stroke-dasharray="283" stroke-dashoffset="283"/>
+          </svg>
+          <div class="macro-value">
+            <span class="macro-number" id="fat-value">0</span>
+            <span class="macro-unit">g</span>
+          </div>
+          <span class="macro-label">Fat</span>
+        </div>
+
+        <div class="macro-ring" data-macro="carbs">
+          <svg viewBox="0 0 100 100">
+            <circle class="ring-bg" cx="50" cy="50" r="45"/>
+            <circle class="ring-fill carbs-ring" cx="50" cy="50" r="45" stroke-dasharray="283" stroke-dashoffset="283"/>
+          </svg>
+          <div class="macro-value">
+            <span class="macro-number" id="carbs-value">0</span>
+            <span class="macro-unit">g</span>
+          </div>
+          <span class="macro-label">Carbs</span>
+        </div>
+      </div>
+
+      <div class="calories-display">
+        <span class="calories-number" id="calories-value">0</span>
+        <span class="calories-label">Calories</span>
+      </div>
+
+      <div class="nutrition-details">
+        <div class="detail-row">
+          <span class="detail-label">Fiber</span>
+          <span class="detail-value"><span id="fiber-value">0</span>g</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Sugar</span>
+          <span class="detail-value"><span id="sugar-value">0</span>g</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Sodium</span>
+          <span class="detail-value"><span id="sodium-value">0</span>mg</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Net Carbs</span>
+          <span class="detail-value"><span id="net-carbs-value">0</span>g</span>
+        </div>
+      </div>
+
+      <div class="price-display">
+        <span class="price-label">Estimated Total</span>
+        <span class="price-value">$<span id="price-value">10.00</span></span>
+      </div>
+
+      <div class="selected-items">
+        <h3>Your Order</h3>
+        <ul id="selected-list">
+          <li class="empty-state">Start building your bowl!</li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <p>100% Free of Gluten, Dairy, Corn, Soy, Peanuts, Refined Sugar & Seed Oils</p>
+    <p class="footer-note">Nutrition data from Kitava Menu - October 2024</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

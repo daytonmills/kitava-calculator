@@ -1,0 +1,685 @@
+/* Kitava Nutrition Calculator - Premium Dark Theme */
+
+:root {
+  /* Colors */
+  --bg-dark: #0a0a0a;
+  --bg-card: #141414;
+  --bg-card-hover: #1a1a1a;
+  --bg-selected: #1f2d1f;
+  --border-color: #2a2a2a;
+  --border-selected: #4ade80;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666666;
+  
+  --accent-green: #4ade80;
+  --accent-orange: #fb923c;
+  --accent-blue: #60a5fa;
+  --accent-purple: #c084fc;
+  
+  --protein-color: #4ade80;
+  --fat-color: #fb923c;
+  --carbs-color: #60a5fa;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(74, 222, 128, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(180deg, #0f0f0f 0%, var(--bg-dark) 100%);
+  border-bottom: 1px solid var(--border-color);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-sm);
+}
+
+.logo-text {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  background: linear-gradient(135deg, var(--accent-green), #22c55e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-tagline {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.header-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Main Layout */
+.main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-xl);
+}
+
+/* Builder Section */
+.builder-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* Mode Toggle */
+.mode-toggle {
+  display: flex;
+  gap: var(--spacing-sm);
+  background: var(--bg-card);
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.mode-btn {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mode-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-card-hover);
+}
+
+.mode-btn.active {
+  background: var(--accent-green);
+  color: #000;
+}
+
+/* Builder Content */
+.builder-content {
+  display: none;
+}
+
+.builder-content.active {
+  display: block;
+}
+
+/* Builder Steps */
+.builder-step {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.step-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.step-number {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--accent-green), #22c55e);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: #000;
+  flex-shrink: 0;
+}
+
+.step-info h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
+}
+
+.step-description {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+/* Options Grid */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.veggies-grid {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+.signature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-md);
+}
+
+/* Option Card */
+.option-card {
+  background: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.option-card:hover {
+  background: var(--bg-card-hover);
+  border-color: #3a3a3a;
+  transform: translateY(-2px);
+}
+
+.option-card.selected {
+  background: var(--bg-selected);
+  border-color: var(--border-selected);
+  box-shadow: var(--shadow-glow);
+}
+
+.option-card.selected::after {
+  content: '✓';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  background: var(--accent-green);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #000;
+}
+
+.option-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  padding-right: 24px;
+}
+
+.option-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.option-calories {
+  color: var(--text-secondary);
+}
+
+.option-price {
+  color: var(--accent-green);
+  font-weight: 600;
+}
+
+.option-price.included {
+  color: var(--text-muted);
+}
+
+/* Signature Bowl Card */
+.signature-card {
+  background: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.signature-card:hover {
+  background: var(--bg-card-hover);
+  border-color: #3a3a3a;
+  transform: translateY(-2px);
+}
+
+.signature-card.selected {
+  background: var(--bg-selected);
+  border-color: var(--border-selected);
+  box-shadow: var(--shadow-glow);
+}
+
+.signature-card .option-name {
+  font-size: 1rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.signature-card .option-description {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.4;
+}
+
+.signature-macros {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+.signature-macro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.signature-macro-value {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.signature-macro-label {
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.signature-macro.protein .signature-macro-value { color: var(--protein-color); }
+.signature-macro.fat .signature-macro-value { color: var(--fat-color); }
+.signature-macro.carbs .signature-macro-value { color: var(--carbs-color); }
+
+/* Nutrition Panel */
+.nutrition-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.panel-header h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.reset-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reset-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+}
+
+/* Macro Rings */
+.macro-rings {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: var(--spacing-lg);
+}
+
+.macro-ring {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  position: relative;
+}
+
+.macro-ring svg {
+  width: 90px;
+  height: 90px;
+  transform: rotate(-90deg);
+}
+
+.ring-bg {
+  fill: none;
+  stroke: var(--border-color);
+  stroke-width: 8;
+}
+
+.ring-fill {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.protein-ring { stroke: var(--protein-color); }
+.fat-ring { stroke: var(--fat-color); }
+.carbs-ring { stroke: var(--carbs-color); }
+
+.macro-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  text-align: center;
+}
+
+.macro-number {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.macro-unit {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.macro-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Calories Display */
+.calories-display {
+  text-align: center;
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.1), rgba(74, 222, 128, 0.05));
+  border: 1px solid rgba(74, 222, 128, 0.2);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.calories-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-green), #22c55e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.calories-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: var(--spacing-xs);
+}
+
+/* Nutrition Details */
+.nutrition-details {
+  display: grid;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.detail-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.detail-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Price Display */
+.price-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: var(--bg-dark);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.price-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.price-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-green);
+}
+
+/* Selected Items */
+.selected-items h3 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-secondary);
+}
+
+.selected-items ul {
+  list-style: none;
+}
+
+.selected-items li {
+  font-size: 0.8rem;
+  padding: var(--spacing-xs) 0;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selected-items li.empty-state {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.item-calories {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: var(--spacing-xl);
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.footer-note {
+  margin-top: var(--spacing-sm);
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .main-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .nutrition-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    max-height: 60vh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    z-index: 100;
+    transform: translateY(calc(100% - 80px));
+    transition: transform 0.3s ease;
+  }
+  
+  .nutrition-panel.expanded {
+    transform: translateY(0);
+  }
+  
+  .nutrition-panel::before {
+    content: '';
+    width: 40px;
+    height: 4px;
+    background: var(--border-color);
+    border-radius: 2px;
+    display: block;
+    margin: 0 auto var(--spacing-md);
+    cursor: pointer;
+  }
+  
+  .builder-section {
+    padding-bottom: 100px;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+  
+  .options-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .veggies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .signature-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .mode-toggle {
+    flex-wrap: wrap;
+  }
+  
+  .mode-btn {
+    flex: 1 1 auto;
+    min-width: calc(50% - 4px);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.option-card, .signature-card {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.option-card:nth-child(1) { animation-delay: 0.02s; }
+.option-card:nth-child(2) { animation-delay: 0.04s; }
+.option-card:nth-child(3) { animation-delay: 0.06s; }
+.option-card:nth-child(4) { animation-delay: 0.08s; }
+.option-card:nth-child(5) { animation-delay: 0.1s; }
+.option-card:nth-child(6) { animation-delay: 0.12s; }
+.option-card:nth-child(7) { animation-delay: 0.14s; }
+.option-card:nth-child(8) { animation-delay: 0.16s; }
