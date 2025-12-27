@@ -2,6 +2,8 @@
 
 A beautiful, Chipotle-style nutrition calculator for [Kitava Kitchen](https://kitava.com) - helping you build your custom bowl and track macros in real-time.
 
+Use it here: https://daytonmills.github.io/kitava-calculator/
+
 ## Features
 
 🥗 **Build Your Own Bowl** - Step-by-step builder with base, protein, veggies, sauce, and extras
